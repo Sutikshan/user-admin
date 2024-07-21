@@ -2,8 +2,9 @@ import { createContext, useContext } from "react";
 
 export type CurrentUser = {
   id: string;
-  name: string;
-  email: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
 };
 
 export interface AuthContextProps {
@@ -18,8 +19,10 @@ export const AuthContext = createContext<AuthContextProps | undefined>(
 
 export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);
+
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
   return context;
 };

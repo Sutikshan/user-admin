@@ -24,12 +24,18 @@ export const userRouter = router({
 
     return user;
   }),
+  delete: protectedProcedure.input(z.string()).mutation(async (opts) => {
+    const { input } = opts;
+    const user = await db.user.delete(input);
+
+    return user;
+  }),
   validateLogin: publicProcedure
     .input(loginInputSchema)
     .output(userLoginResponse)
     .mutation(async (opts) => {
       const { input } = opts;
-      const user = await db.user.findByEmail(input.email);
+      const user = await db.user.findByUserName(input.userName);
 
       if (!user) {
         return {
@@ -39,7 +45,7 @@ export const userRouter = router({
       }
 
       const passwordMatch = await bcrypt.compare(
-        `${input.email} ${input.password}`,
+        `${input.userName} ${input.password}`,
         user.password
       );
 
@@ -57,8 +63,9 @@ export const userRouter = router({
         token,
         user: {
           id: user.id,
-          name: user.name,
-          email: user.email,
+          userName: user.userName,
+          firstName: user.firstName,
+          lastName: user.lastName,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
         },

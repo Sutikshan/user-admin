@@ -15,19 +15,7 @@ export function MainNav({
         to="overview"
         className="text-sm font-medium transition-colors hover:text-primary"
       >
-        Overview
-      </NavLink>
-      <NavLink
-        to="customers"
-        className="text-sm font-medium transition-colors hover:text-primary"
-      >
-        Customers
-      </NavLink>
-      <NavLink
-        to="projects"
-        className="text-sm font-medium transition-colors hover:text-primary"
-      >
-        Projects
+        Users
       </NavLink>
     </nav>
   );

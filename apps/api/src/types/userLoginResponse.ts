@@ -7,8 +7,10 @@ const successTrueSchema = z.object({
   token: z.string(),
   user: z.object({
     id: z.string(),
-    name: z.string(),
-    email: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+
+    userName: z.string(),
     createdAt: z.coerce.date(),
     updatedAt: z.coerce.date(),
   }),

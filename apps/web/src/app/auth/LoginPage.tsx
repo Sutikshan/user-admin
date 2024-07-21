@@ -34,7 +34,7 @@ export const LoginPage = () => {
   const form = useForm<z.infer<typeof loginInputSchema>>({
     resolver: zodResolver(loginInputSchema),
     defaultValues: {
-      email: "",
+      userName: "",
       password: "",
     },
   });
@@ -45,9 +45,9 @@ export const LoginPage = () => {
     const data = await loginMutation.mutateAsync(values);
 
     if (data.success) {
-      const { id, name, email } = data.user;
+      const { id, userName, firstName, lastName } = data.user;
 
-      login({ id, name, email }, data.token);
+      login({ id, firstName, lastName, userName }, data.token);
       navigate("/home");
       return;
     }
@@ -73,15 +73,15 @@ export const LoginPage = () => {
             <CardContent>
               <FormField
                 control={form.control}
-                name="email"
+                name="userName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Id</FormLabel>
+                    <FormLabel>User Name</FormLabel>
                     <FormControl>
                       <Input placeholder="abc@xyz.com" {...field} />
                     </FormControl>
                     <FormDescription>
-                      This is email id used with sign up.
+                      This unique user name is used with sign up.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
