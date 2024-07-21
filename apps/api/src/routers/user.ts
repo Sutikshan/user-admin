@@ -26,6 +26,15 @@ export const userRouter = router({
   }),
   delete: protectedProcedure.input(z.string()).mutation(async (opts) => {
     const { input } = opts;
+
+    if (opts.ctx.user.userName === input) {
+      throw new Error("Cannot delete self");
+    }
+
+    if (!opts.ctx.user.isAdmin) {
+      throw new Error("Not authorized to delete users");
+    }
+
     const user = await db.user.delete(input);
 
     return user;
