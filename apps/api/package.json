@@ -1,0 +1,39 @@
+{
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "name": "api",
+  "main": "index.js",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "db": "docker-compose up -d",
+    "seed": "npx ts-node ./prisma/seed.ts",
+    "dev": "node --env-file=.env --watch -r ts-node/register src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "@trpc/server": "^11.0.0-rc.366",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.14.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.12.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "keywords": [],
+  "author": "Sutikshan Anand Dubey",
+  "license": "ISC",
+  "description": ""
+}
