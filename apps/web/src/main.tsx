@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./app.tsx";
-import { LoginPage } from "./app/auth/loginPage.tsx";
-import { Signup } from "./app/auth/signup.tsx";
+import App from "./App.tsx";
+import { LoginPage } from "./app/auth/LoginPage.tsx";
+import { Signup } from "./app/auth/Signup.tsx";
 import { Customers } from "./app/home/customers.tsx";
 import { Home } from "./app/home/home.tsx";
 import { Overview } from "./app/home/overview.tsx";

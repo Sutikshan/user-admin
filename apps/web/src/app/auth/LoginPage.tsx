@@ -1,3 +1,4 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/trpc";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ShieldAlert } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -117,6 +119,15 @@ export const LoginPage = () => {
               <Button type="submit">Login</Button>
             </CardFooter>
           </form>
+          {form.formState.errors ? (
+            <Alert variant="destructive">
+              <ShieldAlert className="h-4 w-4" />
+              <AlertTitle>Heads up!</AlertTitle>
+              <AlertDescription>
+                {form.formState.errors?.root?.serverError?.message}
+              </AlertDescription>
+            </Alert>
+          ) : null}
         </Form>
       </Card>
     </section>
